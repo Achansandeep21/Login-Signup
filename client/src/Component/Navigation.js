@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link,  NavLink,  useNavigate } from 'react-router-dom'
 
 function Navigation(props) {
   let navigate=useNavigate();
@@ -25,17 +25,50 @@ function Navigation(props) {
   return (
     <div>
         <nav>
-            <Link to={"/home"}>Home</Link>
+        <NavLink to={"/home"}
+        style={(obj)=>{
+          if(obj.isActive==true){
+            return {
+              backgroundColor:"darkcyan", color:"white"
+            }
+          }
+        }}>Home</NavLink>
+        {/* <Link to={"/home"}>Home</Link> */}
 
-            <Link to={"/task"}>Task</Link>
-            <Link to={"/leaves"}>Leaves</Link>
-          
+        <NavLink to={"/task"}
+        style={(obj)=>{
+          if(obj.isActive==true){
+            return {
+              backgroundColor:"darkcyan", color:"white"
+            }
+          }
+        }}
+        >Task</NavLink>
+        <NavLink to={"/leaves"}
+        style={(obj)=>{
+          if(obj.isActive==true){
+            return {
+              backgroundColor:"darkcyan", color:"white"
+            }
+          }
+        }}
+        >Leaves</NavLink>
 
-            <Link to={"/editProfile"}>Edit</Link>
 
-            <Link to={"/"} onClick={()=>{
+        <NavLink to={"/editProfile"}
+        style={(obj)=>{
+          if(obj.isActive==true){
+            return {
+              backgroundColor:"darkcyan", color:"white"
+            }
+          }
+        }}
+        >Edit</NavLink>
+
+
+            <NavLink to={"/"} onClick={()=>{
               localStorage.clear();
-            }}>LogOut</Link>
+            }}>LogOut</NavLink>
         </nav>
     </div>
   )
