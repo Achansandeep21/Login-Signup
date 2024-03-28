@@ -79,7 +79,7 @@ function Login() {
         axios.defaults.baseURL="http://localhost:1212";//saying that we are using same url for all API
         
         //if we want to authenicate for every api call we will write the code below
-        axios.defaults.headers.common["authorisation"] = localStorage.getItem("token");
+       axios.defaults.headers.common["authorisation"] = localStorage.getItem("token");
 
         autoLoginWithServer();
     })
@@ -95,7 +95,7 @@ function Login() {
             </div>
             <div>
             <label>Password</label>
-            <input ref={passwordInputRef} ></input>
+            <input type='password' ref={passwordInputRef} ></input>
             </div>
         <div>
             <button type='button' onClick={()=>{validateLoginWithAxios();}}>Login</button>
