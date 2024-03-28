@@ -21,8 +21,7 @@ function Login() {
         if(JSOData.status=='error'){
             alert(JSOData.msg)
         }else{
-            // localStorage.setItem("email",emailInputRef.current.value);
-            // localStorage.setItem("password",passwordInputRef.current.value);
+       
             localStorage.setItem("token",JSOData.data.token);
             navigate("/home",{state:JSOData});
         }
@@ -32,12 +31,10 @@ function Login() {
         let dataToServer=new FormData();
         dataToServer.append("email",emailInputRef.current.value);
         dataToServer.append("password",passwordInputRef.current.value);
-        //let response=await axios.post("http://localhost:1212/validatedLogin",dataToServer)
-        
-        //we write because the url is same so i have writen baseUrl in useeffect
+   
         let response=await axios.post("/validateLogin/validatedLogin",dataToServer)
 
-        //
+        
         if(response.data.status=='error'){
             alert(response.data.msg)
         }else{

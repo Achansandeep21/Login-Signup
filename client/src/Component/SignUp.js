@@ -14,19 +14,18 @@ function SignUp() {
     const handleInputChange = (ref, fieldName) => {
       const value = ref.current.value;
   
-      // Validation rules for each field
       const validations = {
         name: {
           pattern: /^[a-zA-Z ]+$/,
           message: 'Name can only contain letters and spaces',
         },
         age: {
-          pattern: /^\d+$/,
-          message: 'Age must be a number',
+          pattern: /^\d{2}$/,
+          message: 'Age must be a number and two digit',
         },
         email: {
           pattern: /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
-          message: 'Invalid email ',
+          message: 'Invalid email format',
         },
         mobile: {
           pattern: /^\d{10}$/,
@@ -85,12 +84,7 @@ function SignUp() {
       dataToServer.append("password",passwordRef.current.value)
       dataToServer.append("profilePick",profilePickRef.current.files[0])//use to send file single file
       
-      //to send multiple to server
-      /**
-       for(int i=0;i<profilePickRef.current.files.length;i++){
-        dataToServer.append("profilePick",profilePickRef.current.files[i]);
-       }
-       */
+   
       let reqOptions={
         method:"POST",
         body:dataToServer,
@@ -121,7 +115,7 @@ function SignUp() {
         </div>
         <div>
           <label>Age</label>
-          <input ref={ageRef} maxLength={2} placeholder="Age" onChange={() => handleInputChange(ageRef, 'age')} />
+          <input ref={ageRef} placeholder="Age" onChange={() => handleInputChange(ageRef, 'age')} />
       {errors.age && <div style={ errorStyle  }>{errors.age}</div>}
 
         </div>
@@ -139,15 +133,7 @@ function SignUp() {
         </div>
         <div className='profileDiv'>
           <label>ProfilePick</label>
-          <input type='file' accept="image/*" ref={profilePickRef}  onChange={
-            handleFileChange
-          //   ()=>{
-          //   console.log(profilePickRef.current.files);
-          //   let selectedImgUrl=URL.createObjectURL(profilePickRef.current.files[0]);
-          //   setImageUrl(selectedImgUrl);
-          //   console.log(selectedImgUrl);
-          // }
-          }></input>
+          <input type='file' accept="image/*" ref={profilePickRef}  onChange={handleFileChange }></input>
         </div>
         
         <div className='imgDiv'>
